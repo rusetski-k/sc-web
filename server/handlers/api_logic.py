@@ -3,6 +3,7 @@
 import uuid, base64, hashlib, time
 
 import tornado.web
+import tornado.options
 
 from keynodes import KeynodeSysIdentifiers, Keynodes
 from sctp.types import SctpIteratorType, ScElementType
@@ -642,7 +643,8 @@ class ScSession:
             return results[0][2]
         
         # setup default language
-        _lang = self.keynodes[KeynodeSysIdentifiers.scs_code]
+        _lang_id = tornado.options.options.default_ext_lang;
+        _lang = self.sctp_client.find_element_by_system_identifier(_lang_id)
         self.set_default_ext_lang(_lang)
         
         return _lang

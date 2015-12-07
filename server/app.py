@@ -60,6 +60,7 @@ def main():
     
     tornado.options.define("cfg", default = "server.conf", help = "path to configuration file", type = str)
 
+    tornado.options.define("default_ext_lang", default = "scs_code", help = "default external language for user interaction", type = str)
     tornado.options.parse_command_line()
     if os.path.exists(tornado.options.options.cfg):
         tornado.options.parse_config_file(tornado.options.options.cfg)
